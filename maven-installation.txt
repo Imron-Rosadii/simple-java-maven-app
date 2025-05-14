@@ -6,3 +6,9 @@ ln -s apache-maven-3.9.6 maven
 
 export MAVEN_HOME=/opt/maven
 export PATH=$MAVEN_HOME/bin:$PATH
+
+configure global variable at Jenkins UI
+| Name         | Value                         |
+| ------------ | ----------------------------- |
+| `PATH+MAVEN` | `/opt/apache-maven-3.9.9/bin` |
+| `MAVEN_HOME` | `/opt/apache-maven-3.9.9`     |
