@@ -34,7 +34,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Pastikan Anda menggunakan URL SSH Git
-                git branch: 'main', url: 'git@github.com:Imron-Rosadii/simple-java-maven-app.git', credentialsId: 'github-ssh-key' // Sesuaikan credentialsId
+                git branch: 'master', url: 'git@github.com:Imron-Rosadii/simple-java-maven-app.git', credentialsId: 'github-ssh-key' // Sesuaikan credentialsId
             }
         }
         // Stage 2: Membangun aplikasi (compile & package)
