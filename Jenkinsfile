@@ -17,13 +17,26 @@ pipeline {
     // 3. stages: Blok utama yang berisi satu atau lebih stage
     stages {
         // Stage 1: Checkout source codw
-        stage('Checkout') {
+        // stage('Checkout') {
+        //     steps {
+        //         // Pull kode dari repositori Git
+        //         git branch: 'master', url: 'https://github.com/Danu-prasetyo/simple-java-maven-app.git'
+        //     }
+        // }
+        stage('Prepare SSH Host Keys') {
             steps {
-                // Pull kode dari repositori Git
-                git branch: 'master', url: 'https://github.com/Danu-prasetyo/simple-java-maven-app.git'
+                // Menambahkan kunci host GitHub ke known_hosts di workspace Jenkins
+                sh 'ssh-keyscan -H github.com >> ~/.ssh/known_hosts'
+                // Opsional: Untuk melihat isi known_hosts
+                // sh 'cat ~/.ssh/known_hosts'
             }
         }
-
+        stage('Checkout') {
+            steps {
+                // Pastikan Anda menggunakan URL SSH Git
+                git branch: 'main', url: 'git@github.com:Imron-Rosadii/simple-java-maven-app.git', credentialsId: 'github-ssh-key' // Sesuaikan credentialsId
+            }
+        }
         // Stage 2: Membangun aplikasi (compile & package)
         stage('Build') {
             steps {
@@ -31,7 +44,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-
+        
         // Stage 3: Menjalankan unit tes
         stage('Test') {
             steps {
