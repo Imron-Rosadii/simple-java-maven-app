@@ -20,7 +20,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Pull kode dari repositori Git
-                git branch: 'main', url: 'https://github.com/Danu-prasetyo/simple-java-maven-app.git'
+                git branch: 'master', url: 'https://github.com/Danu-prasetyo/simple-java-maven-app.git'
             }
         }
 
